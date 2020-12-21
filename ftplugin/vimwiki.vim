@@ -486,10 +486,10 @@ if str2nr(vimwiki#vars#get_global('key_mappings').lists)
     if has('patch-7.3.489')
       " expand iabbrev on enter
       " inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 1 5<CR>
-      inoremap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
+      imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
     else
       " inoremap <silent><buffer> <CR> <Esc>:VimwikiReturn 1 5<CR>
-      inoremap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<Esc>:VimwikiReturn 1 5<CR>"
+      imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<Esc>:VimwikiReturn 1 5<CR>"
     endif
   endif
   if  maparg('<S-CR>', 'i') !~# '.*VimwikiReturn*.'
@@ -542,12 +542,11 @@ function! s:CR(normal, just_mrkr) abort
   call vimwiki#lst#kbd_cr(a:normal, a:just_mrkr)
 endfunction
 
-" kraxli:
 " insert mode table mappings
-" if str2nr(vimwiki#vars#get_global('key_mappings').table_mappings)
-"   inoremap <expr><buffer> <Tab> vimwiki#tbl#kbd_tab()
-"   inoremap <expr><buffer> <S-Tab> vimwiki#tbl#kbd_shift_tab()
-" endif
+if str2nr(vimwiki#vars#get_global('key_mappings').table_mappings)
+  inoremap <expr><buffer> <Tab> vimwiki#tbl#kbd_tab()
+  inoremap <expr><buffer> <S-Tab> vimwiki#tbl#kbd_shift_tab()
+endif
 
 " <Plug> table formatting definitions
 nnoremap <silent><buffer> <Plug>VimwikiTableAlignQ
