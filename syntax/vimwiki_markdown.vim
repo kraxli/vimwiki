@@ -90,10 +90,11 @@ let s:markdown_syntax.rxMathStart = '\$\$'
 let s:markdown_syntax.rxMathEnd = '\$\$'
 
 let s:markdown_syntax.rxComment = '^\s*%%.*$\|<!--[^>]*-->'
-let s:markdown_syntax.rxTags = '\%(^\|\s\)\@<=:\%([^:[:space:]]\+:\)\+\%(\s\|$\)\@='
+" let s:markdown_syntax.rxTags = '\%(^\|\s\)\@<=:\%([^:[:space:]]\+:\)\+\%(\s\|$\)\@='
+let s:markdown_syntax.rxTags = '\%(^\|\s\)\@<=\%(:\%([^:[:space:]]\+:\)\|#\%([^#[:space:]]\+\)\)\+\%(\s\|$\)\@='
 
-let s:markdown_syntax.header_search = '^\s*\(#\{1,6}\)\([^#].*\)$'
-let s:markdown_syntax.header_match = '^\s*\(#\{1,6}\)#\@!\s*__Header__\s*$'
+let s:markdown_syntax.header_search = '^\s*\(#\{1,6}\)\s\+\([^#].*\)$'
+let s:markdown_syntax.header_match = '^\s*\(#\{1,6}\)\s\+#\@!\s*__Header__\s*$'
 let s:markdown_syntax.bold_search = '\%(^\|\s\|[[:punct:]]\)\@<=\*\zs'.
       \ '\%([^*`[:space:]][^*`]*[^*`[:space:]]\|[^*`[:space:]]\)\ze\*\%([[:punct:]]\|\s\|$\)\@='
 let s:markdown_syntax.bold_match = '\%(^\|\s\|[[:punct:]]\)\@<=\*__Text__\*'.

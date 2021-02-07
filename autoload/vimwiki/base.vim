@@ -257,6 +257,8 @@ function! vimwiki#base#resolve_link(link_text, ...) abort
   endif
 
   let link_infos.filename = vimwiki#path#normalize(link_infos.filename)
+  " kraxli
+  let g:link_infos = link_infos
   return link_infos
 endfunction
 

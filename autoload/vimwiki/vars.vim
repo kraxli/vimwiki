@@ -543,38 +543,38 @@ function! vimwiki#vars#populate_syntax_vars(syntax) abort
     " symmetric headers
     for i in range(1,6)
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Template'] =
-            \ repeat(header_symbol, i).' __Header__ '.repeat(header_symbol, i)
+            \ repeat(header_symbol, i).'\s\+'.' __Header__ '.repeat(header_symbol, i)
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i] =
-            \ '^\s*'.header_symbol.'\{'.i.'}[^'.header_symbol.'].*[^'.header_symbol.']'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+[^'.header_symbol.'].*[^'.header_symbol.']'
             \ .header_symbol.'\{'.i.'}\s*$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Text'] =
-            \ '^\s*'.header_symbol.'\{'.i.'}\zs[^'.header_symbol.'].*[^'.header_symbol.']\ze'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+\zs[^'.header_symbol.'].*[^'.header_symbol.']\ze'
             \ .header_symbol.'\{'.i.'}\s*$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Start'] =
-            \ '^\s*'.header_symbol.'\{'.i.'}[^'.header_symbol.'].*[^'.header_symbol.']'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+[^'.header_symbol.'].*[^'.header_symbol.']'
             \ .header_symbol.'\{'.i.'}\s*$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_End'] =
-            \ '^\s*'.header_symbol.'\{1,'.i.'}[^'.header_symbol.'].*[^'.header_symbol.']'
+            \ '^\s*'.header_symbol.'\{1,'.i.'}\s\+[^'.header_symbol.'].*[^'.header_symbol.']'
             \ .header_symbol.'\{1,'.i.'}\s*$'
     endfor
     let g:vimwiki_syntax_variables[a:syntax].rxHeader =
-          \ '^\s*\('.header_symbol.'\{1,6}\)\zs[^'.header_symbol.'].*[^'.header_symbol.']\ze\1\s*$'
+          \ '^\s*\('.header_symbol.'\{1,6}\)\s\+\zs[^'.header_symbol.'].*[^'.header_symbol.']\ze\1\s*$'
   else
     " asymmetric
     for i in range(1,6)
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Template'] =
-            \ repeat(header_symbol, i).' __Header__'
+            \ repeat(header_symbol, i).'\s\+ __Header__'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i] =
-            \ '^\s*'.header_symbol.'\{'.i.'}[^'.header_symbol.'].*$'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+[^'.header_symbol.'].*$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Text'] =
-            \ '^\s*'.header_symbol.'\{'.i.'}\zs[^'.header_symbol.'].*\ze$'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+\zs[^'.header_symbol.'].*\ze$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_Start'] =
-            \ '^\s*'.header_symbol.'\{'.i.'}[^'.header_symbol.'].*$'
+            \ '^\s*'.header_symbol.'\{'.i.'}\s\+[^'.header_symbol.'].*$'
       let g:vimwiki_syntax_variables[a:syntax]['rxH'.i.'_End'] =
-            \ '^\s*'.header_symbol.'\{1,'.i.'}[^'.header_symbol.'].*$'
+            \ '^\s*'.header_symbol.'\{1,'.i.'}\s\+[^'.header_symbol.'].*$'
     endfor
     let g:vimwiki_syntax_variables[a:syntax].rxHeader =
-          \ '^\s*\('.header_symbol.'\{1,6}\)\zs[^'.header_symbol.'].*\ze$'
+          \ '^\s*\('.header_symbol.'\{1,6}\)\s\+\zs[^'.header_symbol.'].*\ze$'
   endif
 
   let g:vimwiki_syntax_variables[a:syntax].rxPreStart =
