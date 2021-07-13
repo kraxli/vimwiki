@@ -487,16 +487,17 @@ if str2nr(vimwiki#vars#get_global('key_mappings').lists)
       " expand iabbrev on enter
       " inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 1 5<CR>
       " !! imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
-      " imap <expr><silent><buffer> <CR> pumvisible() ? complete_info()['selected']~=-1 ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
       imap <expr><silent><buffer> <CR> pumvisible() ? (complete_info()['selected'] == -1 ? "\<C-]><Esc>:VimwikiReturn 1 5<CR>" : "\<CR>") : "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
     else
       " inoremap <silent><buffer> <CR> <Esc>:VimwikiReturn 1 5<CR>
-      imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<Esc>:VimwikiReturn 1 5<CR>"
+      " imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<Esc>:VimwikiReturn 1 5<CR>"
+      imap <expr><silent><buffer> <CR> pumvisible() ? (complete_info()['selected'] == -1 ? "\<Esc>:VimwikiReturn 1 5<CR>" : "\<CR>") : "\<Esc>:VimwikiReturn 1 5<CR>"
     endif
   endif
   if  maparg('<S-CR>', 'i') !~# '.*VimwikiReturn*.'
     " inoremap <silent><buffer> <S-CR> <Esc>:VimwikiReturn 2 2<CR>
-      inoremap <expr><silent><buffer> <S-CR> pumvisible() ? "\<S-CR>" :  "\<Esc>:VimwikiReturn 2 2<CR>"
+    " inoremap <expr><silent><buffer> <S-CR> pumvisible() ? "\<S-CR>" :  "\<Esc>:VimwikiReturn 2 2<CR>"
+    inoremap <expr><silent><buffer> <S-CR> pumvisible() ? (complete_info()['selected'] == -1 ? "\<Esc>:VimwikiReturn 2 2<CR>" : "\<S-CR>") : "\<Esc>:VimwikiReturn 2 2<CR>"
   endif
 
   " change symbol for bulleted lists
