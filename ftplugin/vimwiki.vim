@@ -486,7 +486,9 @@ if str2nr(vimwiki#vars#get_global('key_mappings').lists)
     if has('patch-7.3.489')
       " expand iabbrev on enter
       " inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 1 5<CR>
-      imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
+      " !! imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
+      " imap <expr><silent><buffer> <CR> pumvisible() ? complete_info()['selected']~=-1 ? "\<CR>" :  "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
+      imap <expr><silent><buffer> <CR> pumvisible() ? (complete_info()['selected'] == -1 ? "\<C-]><Esc>:VimwikiReturn 1 5<CR>" : "\<CR>") : "\<C-]><Esc>:VimwikiReturn 1 5<CR>"
     else
       " inoremap <silent><buffer> <CR> <Esc>:VimwikiReturn 1 5<CR>
       imap <expr><silent><buffer> <CR> pumvisible() ? "\<CR>" :  "\<Esc>:VimwikiReturn 1 5<CR>"
